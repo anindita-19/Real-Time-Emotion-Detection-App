@@ -1,0 +1,27 @@
+# Core Dependencies for Emotion Detection Web App
+# Install these with: pip install -r requirements.txt
+
+# Web Framework
+streamlit==1.54.0
+
+# Video Streaming for Streamlit
+streamlit-webrtc==0.47.1
+
+# Deep Learning
+tensorflow==2.18.0  # Use 2.15.0 if you have GPU issues
+# OR use tensorflow-cpu==2.18.0 for CPU-only version
+
+# Computer Vision
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
+
+# Scientific Computing
+numpy==1.26.4
+
+# WebRTC Support
+aiortc==1.10.0
+av==14.0.1
+
+# Additional utilities
+pillow==10.4.0
+protobuf==3.20.3  # For TensorFlow compatibility
