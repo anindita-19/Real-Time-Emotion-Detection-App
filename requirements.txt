@@ -8,20 +8,18 @@ streamlit==1.54.0
 streamlit-webrtc==0.47.1
 
 # Deep Learning
-tensorflow==2.18.0  # Use 2.15.0 if you have GPU issues
-# OR use tensorflow-cpu==2.18.0 for CPU-only version
+tensorflow==2.18.0
 
 # Computer Vision
 opencv-python==4.8.1.78
-opencv-contrib-python==4.8.1.78
 
 # Scientific Computing
 numpy==1.26.4
 
-# WebRTC Support
+# WebRTC Support - FIXED VERSIONS
 aiortc==1.10.0
-av==14.0.1
+av<14.0.0,>=9.0.0
 
 # Additional utilities
 pillow==10.4.0
-protobuf==3.20.3  # For TensorFlow compatibility
+protobuf==3.20.3
