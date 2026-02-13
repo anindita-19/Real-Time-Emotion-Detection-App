@@ -31,7 +31,7 @@ A deep learning-based emotion detection system that recognizes facial emotions i
 
 This project implements a real-time emotion detection system capable of recognizing five distinct facial emotions: **Angry**, **Happy**, **Neutral**, **Sad**, and **Surprised**. The system uses a Convolutional Neural Network (CNN) trained on grayscale facial images and provides instant emotion predictions through a user-friendly web interface.
 
-**Note**: This is an educational project developed as part of a machine learning course.
+**Note**: This is an educational project developed as part of a machine learning course. The repository includes the complete training notebook demonstrating the end-to-end ML workflow from data preprocessing to model training.
 
 ### Why This Project?
 
@@ -143,6 +143,19 @@ Non-trainable params: 0
 - **Epochs**: 30
 - **Training Environment**: Google Colab (CPU)
 - **Training Duration**: ~30 minutes
+
+### Training Notebook
+
+The complete training workflow is documented in `training/Image_preprocessing_and_model_training.ipynb`, which includes:
+- **Image Preprocessing**: Loading images from folders, converting to grayscale, resizing to 48×48
+- **Data Serialization**: Creating pickle files for efficient data loading
+- **Label Encoding**: Converting emotion labels to numerical format
+- **Data Augmentation**: Normalization and reshaping for CNN input
+- **Model Architecture**: Building the sequential CNN
+- **Training Process**: 30 epochs with validation monitoring
+- **Model Saving**: Exporting trained model as `.h5` file
+
+This notebook can be run in Google Colab or Jupyter Notebook (requires the original dataset).
 
 ---
 
@@ -370,21 +383,23 @@ The app will automatically open in your browser at `http://localhost:8501`
 ```
 emotion-detection-app/
 │
+├── training/
+│   └── Image_preprocessing_and_model_training.ipynb    # Complete training notebook
+│
 ├── model/
-│   └── emotion_detection_model.h5      # Trained model (627K parameters)
+│   └── emotion_detection_model.h5                      # Trained model (627K parameters)
 │
-├── haarcascade/                         # Optional (falls back to OpenCV)
-│   └── haarcascade_frontalface_default (1).xml
+├── haarcascade/
+│   └── haarcascade_frontalface_default (1).xml         # Face detection cascade
 │
-├── web_app.py                           # Main Streamlit application
-├── requirements.txt                     # Python dependencies
-├── .gitignore                           # Git ignore rules
-├── README.md                            # This file
+├── web_app.py                                          # Main Streamlit application
+├── requirements.txt                                    # Python dependencies
+├── .gitignore                                          # Git ignore rules
+├── README.md                                           # This file
 │
-└── venv/                                # Virtual environment (not in Git)
+└── venv/                                               # Virtual environment (not in Git)
 
-NOT INCLUDED (Training files):
-├── CTTC_PROJECT.ipynb                   # Model training notebook
+NOT INCLUDED (Dataset files - too large for GitHub):
 ├── data/                                # Pickled data (not in repo)
 │   ├── images.p
 │   └── labels.p
@@ -396,7 +411,20 @@ NOT INCLUDED (Training files):
     └── Surprised/
 ```
 
-**Note**: The training data, pickle files, and raw dataset are NOT included in this repository due to size and licensing constraints.
+### What's Included vs. Not Included
+
+**✅ Included in Repository:**
+- Complete training notebook showing preprocessing and model training workflow
+- Trained model file (.h5)
+- Web application code
+- All dependencies and documentation
+
+**❌ Not Included (Too Large):**
+- Raw dataset images (~16,000 images)
+- Pickle files (serialized data)
+- Virtual environment
+
+**Note**: The training notebook demonstrates the complete ML workflow, but the dataset itself is not included due to GitHub size constraints and licensing considerations.
 
 ---
 
