@@ -10,10 +10,19 @@ A deep learning-based emotion detection system that recognizes facial emotions i
 
 ---
 
+## 🚀 **[Live Demo - Try It Now!](https://huggingface.co/spaces/anindita-13/real-time-emotion-detection)** 🚀
+
+**Experience the app in action:** Click the link above to use the real-time emotion detection directly in your browser - no installation required!
+
+> **Note**: The live demo runs on Hugging Face Spaces with Gradio for easy web deployment. The repository code uses Streamlit for local development. Both use the same trained CNN model.
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
+- [Live Deployment](#-deployment)
 - [Dataset Information](#dataset-information)
 - [Model Architecture](#model-architecture)
 - [Training Results](#training-results)
@@ -48,11 +57,42 @@ Emotion detection has numerous practical applications:
 
 - ✅ **Real-time emotion detection** from webcam feed
 - ✅ **5 emotion categories**: Angry, Happy, Neutral, Sad, Surprised
+- ✅ **Live web deployment** on Hugging Face Spaces
+- ✅ **Publicly accessible** via shareable link (no installation needed)
 - ✅ **Beautiful, modern UI** with dark gradient background
 - ✅ **Color-coded bounding boxes** for each emotion
 - ✅ **Confidence scores** displayed as percentages
 - ✅ **Customizable settings** via sidebar controls
 - ✅ **Cross-platform support** (Windows, Mac, Linux)
+
+---
+
+## 🌐 Deployment
+
+This project has been successfully deployed on **Hugging Face Spaces** for public access:
+
+**🔗 Live App:** https://huggingface.co/spaces/anindita-13/real-time-emotion-detection
+
+### Deployment Stack
+- **Platform**: Hugging Face Spaces
+- **Framework**: Gradio 5.12.0
+- **Inference**: Server-side (CPU)
+- **Accessibility**: Public URL, no installation required
+- **Performance**: 2-4 FPS (acceptable for ML demos)
+
+### Local vs Deployed Versions
+- **Local (this repo)**: Uses Streamlit + streamlit-webrtc for development
+- **Deployed (HF Spaces)**: Uses Gradio for web accessibility and easier deployment
+
+Both versions use the same trained model (`emotion_detection_model.h5`) and emotion detection logic.
+
+### Why Hugging Face Spaces?
+
+After attempting deployment on Streamlit Cloud (webcam access issues) and trying streamlit-webrtc (STUN/TURN networking complications), Hugging Face Spaces with Gradio provided the most reliable solution for:
+- ✅ Browser webcam access without WebRTC complexities
+- ✅ Simple deployment process
+- ✅ Free hosting with public URLs
+- ✅ No firewall/NAT issues
 
 ---
 
@@ -207,7 +247,7 @@ This notebook can be run in Google Colab or Jupyter Notebook (requires the origi
 - Webcam (built-in or external)
 - Internet connection (for initial setup)
 
-### Quick Start
+### Quick Start (Local Development)
 
 1. **Clone the repository**
 ```bash
@@ -245,11 +285,23 @@ streamlit run web_app.py
 
 The app will automatically open in your browser at `http://localhost:8501`
 
+### Alternative: Use the Live Deployment
+
+**No installation needed!** Just visit: https://huggingface.co/spaces/anindita-13/real-time-emotion-detection
+
 ---
 
 ## 💻 Usage
 
-### Starting the App
+### Using the Live Deployment (Recommended)
+
+1. Visit https://huggingface.co/spaces/anindita-13/real-time-emotion-detection
+2. Click the webcam icon to activate camera
+3. Allow camera permissions when prompted
+4. Position your face in the frame
+5. See real-time emotion predictions!
+
+### Using Local Installation
 
 1. Activate your virtual environment
 2. Run `streamlit run web_app.py`
@@ -257,7 +309,7 @@ The app will automatically open in your browser at `http://localhost:8501`
 4. Allow camera permissions when prompted
 5. Position your face in the frame
 
-### Sidebar Controls
+### Sidebar Controls (Local Version)
 
 - ✅ **Show Bounding Box**: Toggle face detection rectangles
 - ✅ **Show Confidence Score**: Display prediction percentages
@@ -311,6 +363,12 @@ The app will automatically open in your browser at `http://localhost:8501`
 - Single face optimization (may struggle with multiple faces)
 - Trained on static images (video may differ)
 
+### 5. Deployment Performance
+
+- **Live demo**: 2-4 FPS (network latency)
+- **Local version**: 15-30 FPS (no network overhead)
+- Free tier CPU inference causes lag
+
 ---
 
 ## 🔧 Future Improvements
@@ -357,18 +415,30 @@ The app will automatically open in your browser at `http://localhost:8501`
    - Dark/light theme toggle
    - Screenshot/recording functionality
 
+8. **Performance Optimization**
+   - Model quantization for faster inference
+   - GPU support on HF Spaces (paid tier)
+   - Edge deployment (TensorFlow Lite)
+
 ---
 
 ## 🛠️ Tech Stack
 
+### Development & Training
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **Python** | 3.12.9 | Programming language |
 | **TensorFlow/Keras** | 2.18.0 | Deep learning framework |
 | **OpenCV** | 4.8.1.78 | Computer vision & face detection |
 | **NumPy** | 1.26.4 | Numerical computing |
-| **Streamlit** | 1.54.0 | Web application framework |
-| **streamlit-webrtc** | 0.47.1 | Real-time video streaming |
+| **Streamlit** | 1.54.0 | Local web application framework |
+| **streamlit-webrtc** | 0.47.1 | Real-time video streaming (local) |
+
+### Deployment
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Gradio** | 5.12.0 | Web deployment framework |
+| **Hugging Face Spaces** | - | Hosting platform |
 
 ### Supporting Libraries
 - **scikit-learn**: Data preprocessing, train/test split, label encoding
@@ -392,12 +462,18 @@ emotion-detection-app/
 ├── haarcascade/
 │   └── haarcascade_frontalface_default (1).xml         # Face detection cascade
 │
-├── web_app.py                                          # Main Streamlit application
-├── requirements.txt                                    # Python dependencies
+├── web_app.py                                          # Main Streamlit application (local)
+├── requirements.txt                                    # Python dependencies (local)
+├── packages.txt                                        # System dependencies (Streamlit Cloud)
 ├── .gitignore                                          # Git ignore rules
 ├── README.md                                           # This file
 │
 └── venv/                                               # Virtual environment (not in Git)
+
+DEPLOYMENT FILES (Hugging Face Spaces):
+├── app.py                                              # Gradio application (HF Spaces)
+├── requirements.txt                                    # Python dependencies (HF Spaces)
+└── README.md                                           # Space configuration (HF Spaces)
 
 NOT INCLUDED (Dataset files - too large for GitHub):
 ├── data/                                # Pickled data (not in repo)
@@ -416,13 +492,18 @@ NOT INCLUDED (Dataset files - too large for GitHub):
 **✅ Included in Repository:**
 - Complete training notebook showing preprocessing and model training workflow
 - Trained model file (.h5)
-- Web application code
+- Local web application code (Streamlit)
 - All dependencies and documentation
 
 **❌ Not Included (Too Large):**
 - Raw dataset images (~16,000 images)
 - Pickle files (serialized data)
 - Virtual environment
+
+**🌐 Separate Deployment (Hugging Face Spaces):**
+- Gradio-based web app (`app.py`)
+- Deployment-specific dependencies
+- Same trained model
 
 **Note**: The training notebook demonstrates the complete ML workflow, but the dataset itself is not included due to GitHub size constraints and licensing considerations.
 
@@ -433,7 +514,9 @@ NOT INCLUDED (Dataset files - too large for GitHub):
 - **Dataset**: Provided by course instructor for educational purposes
 - **TensorFlow Team**: Deep learning framework
 - **OpenCV Team**: Computer vision tools
-- **Streamlit Team**: Web application framework
+- **Streamlit Team**: Local web application framework
+- **Gradio Team**: Deployment framework
+- **Hugging Face**: Free hosting and deployment platform
 - **Google Colab**: Free GPU/CPU training resources
 
 ---
@@ -471,6 +554,7 @@ SOFTWARE.
 ## 📧 Contact
 
 - **GitHub**: [@anindita-19](https://github.com/anindita-19)
+- **Live Demo**: [Hugging Face Space](https://huggingface.co/spaces/anindita-13/real-time-emotion-detection)
 
 ### Contributing
 
@@ -499,6 +583,7 @@ This project was developed as part of a machine learning/computer science course
 - Convolutional Neural Networks
 - Computer Vision techniques
 - Model deployment with web frameworks
+- Real-world ML application development
 
 **Academic Integrity**: This project is shared for educational purposes. If using for academic submissions, please follow your institution's academic honesty policies.
 
@@ -506,7 +591,10 @@ This project was developed as part of a machine learning/computer science course
 
 ## 🌟 Support
 
-If you found this project helpful or interesting, please give it a ⭐ on GitHub!
+If you found this project helpful or interesting, please:
+- ⭐ Give it a star on GitHub
+- 🔗 Try the [live demo](https://huggingface.co/spaces/anindita-13/real-time-emotion-detection)
+- 📣 Share with others learning ML/AI
 
 ---
 
